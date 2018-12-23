@@ -120,8 +120,8 @@
 					//$astQ = "DELETE FROM go_agent_sessions WHERE sess_agent_user='$dataUser' LIMIT 1;";
 					//$rsltQ  = $astDB->rawQuery($astQ);
 					
-					$astDB->where("sess_agent_user", $dataUser);
-					$astDB->delete("go_agent_sessions");
+					$goDB->where("sess_agent_user", $dataUser);
+					$goDB->delete("go_agent_sessions");
 					
 					$log_id 							= log_action($goDB, 'FORCE-LOGOUT', $dataUser, $ip_address, "User $dataUser used emergency log out upon login.", $dataUserGroup);
 				}

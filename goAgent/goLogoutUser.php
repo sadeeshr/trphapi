@@ -108,9 +108,9 @@ if ($sipIsLoggedIn) {
         $rslt = $astDB->delete('web_client_sessions');
 		$wcs_delete = $astDB->getRowCount();
 		
-		$astDB->where('sess_agent_user', $user);
-		$rslt = $astDB->delete('go_agent_sessions');
-		$gas_delete = $astDB->getRowCount();
+		$goDB->where('sess_agent_user', $user);
+		$rslt = $goDB->delete('go_agent_sessions');
+		$gas_delete = $goDB->getRowCount();
         
         ##### Hangup the client phone
         $astDB->where('server_ip', $server_ip);
@@ -194,8 +194,8 @@ if ($sipIsLoggedIn) {
         
 		#### agent session ######
         //$stmtagent = "DELETE FROM `go_agent_sessions` WHERE `sess_agent_user` = '$user'";
-        $astDB->where('sess_agent_user', $user);
-        $rslt = $astDB->delete('go_agent_sessions');
+        $goDB->where('sess_agent_user', $user);
+        $rslt = $goDB->delete('go_agent_sessions');
         
         ##### Delete the vicidial_live_inbound_agents records for this session
         $astDB->where('user', $user);

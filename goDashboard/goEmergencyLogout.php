@@ -120,16 +120,16 @@
 					}
 
 					//$sql_getsessID = "SELECT agent_session_id FROM go_agent_sessions WHERE sess_agent_user='$user_name';";
-					$astDB->where('sess_agent_user', $user_name);
-					$fetch_sessID 						= $astDB->getOne('go_agent_sessions', 'agent_session_id');
+					$goDB->where('sess_agent_user', $user_name);
+					$fetch_sessID 						= $goDB->getOne('go_agent_sessions', 'agent_session_id');
 					//$fetch_sessID = mysqli_fetch_array($query_sessID);
 
 					//$query5 = "DELETE FROM vicidial_live_agents WHERE user='".$agents['user']."' LIMIT 1;";
 					$astDB->where('user', $agents['user']);
 					$rslt5  							= $astDB->delete('vicidial_live_agents', 1);
 					//$query6 = "DELETE FROM go_agent_sessions WHERE sess_agent_user='".$agents['user']."' LIMIT 1;";
-					$astDB->where('sess_agent_user', $agents['user']);
-					$rslt6  							= $astDB->delete('go_agent_sessions', 1);
+					$goDB->where('sess_agent_user', $agents['user']);
+					$rslt6  							= $goDB->delete('go_agent_sessions', 1);
 
 					//insert to user_log
 					//$query7 = "INSERT INTO vicidial_user_log(user, event, campaign_id, event_date, user_group, server_ip, session_id) VALUE('".$agents['user']."', 'FORCE-LOGOUT', '".$agents['campaign_id']."', '".$NOW_TIME."', '".$agents['user_group']."', '".$log_ip."', '".$fetch_sessID['agent_session_id']."');";
@@ -151,14 +151,14 @@
 					);			
 				} else {
 					//$query7 = "SELECT * FROM go_agent_sessions WHERE sess_agent_user='$user_name';";
-					$astDB->where('sess_agent_user', $user_name);
-					$VliveagentSess 					= $astDB->getOne('go_agent_sessions');
+					$goDB->where('sess_agent_user', $user_name);
+					$VliveagentSess 					= $goDB->getOne('go_agent_sessions');
 					//$VliveagentSess = mysqli_fetch_array($VliveagentSess, MYSQLI_ASSOC);
 					
 					if (!empty($VliveagentSess)) {
 						//$query8 = "DELETE FROM go_agent_sessions WHERE sess_agent_user='$user_name';";
-						$astDB->where('sess_agent_user', $user_name);
-						$rslt8  						= $astDB->delete('go_agent_sessions');
+						$goDB->where('sess_agent_user', $user_name);
+						$rslt8  						= $goDB->delete('go_agent_sessions');
 						
 						//$query7 = "INSERT INTO vicidial_user_log(user, event, campaign_id, event_date, user_group, server_ip, session_id) VALUE('".$user_name."', 'FORCE-LOGOUT', '".$agents['campaign_id']."', '".$NOW_TIME."', '".$agents['user_group']."', '".$log_ip."', '".$VliveagentSess['agent_session_id']."');";
 						$insertData 					= array(
