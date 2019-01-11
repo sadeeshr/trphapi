@@ -38,11 +38,11 @@ if (!isset($task) || (isset($task) && $task === '')) {
         $extension = "{$phone_settings->dialplan_number}@{$phone_settings->ext_context}";
     }
     
-    $astDB->where('sess_agent_user', $goUser);
-    $astDB->where('sess_agent_phone', $phone_login);
-    $astDB->where('sess_agent_status', 'INUSE');
-    $rslt = $astDB->getOne('go_agent_sessions');
-    $go_agent_sessions = $astDB->getRowCount();
+    $goDB->where('sess_agent_user', $goUser);
+    $goDB->where('sess_agent_phone', $phone_login);
+    $goDB->where('sess_agent_status', 'INUSE');
+    $rslt = $goDB->getOne('go_agent_sessions');
+    $go_agent_sessions = $goDB->getRowCount();
     
     $astDB->where('extension', $extension);
     $astDB->where('server_ip', $phone_settings->server_ip);
