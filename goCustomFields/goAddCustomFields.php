@@ -75,7 +75,7 @@
             }else{
                 $field_sql .= "ALTER TABLE custom_$list_id ADD $field_label ";
             }
-           
+            
             if ( ($field_type=='SELECT') or ($field_type=='RADIO') ) {
                 $field_options_array = explode("\n",$field_options);
                 $field_options_count = count($field_options_array);
